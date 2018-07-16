@@ -1,0 +1,13 @@
+services:
+    bwein.backend_customizer.listener.assets.install:
+        class: Bwein\BackendCustomizer\EventListener\AssetsInstallCommandListener
+        arguments:
+            - "@bwein.backend_customizer.stylesheet_generator"
+        tags:
+            - { name: kernel.event_listener, event: console.command }
+
+    bwein.backend_customizer.listener.stylesheet:
+        class: Bwein\BackendCustomizer\EventListener\StylesheetListener
+        arguments:
+            - "@filesystem"
+            - "%contao.web_dir%"
