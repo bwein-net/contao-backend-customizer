@@ -8,6 +8,7 @@
         "header",
         "environment",
         "custom",
+        "theme",
         "color",
         "css"
     ],
@@ -20,7 +21,7 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
+        "php": ">=7.0",
         "contao/core-bundle": "^4.4",
         "oyejorge/less.php": "^1.7"
     },
