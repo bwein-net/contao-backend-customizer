@@ -11,3 +11,4 @@ services:
         arguments:
             - "@filesystem"
             - "%contao.web_dir%"
+        public: true
