@@ -60,3 +60,9 @@ vendor/bin/contao-console cache:clear --no-warmup
 vendor/bin/contao-console cache:warmup
 vendor/bin/contao-console assets:install --symlink --relative
 ```
+
+## Screenshots
+
+![Backend header](screenshot-backend-header.png)
+
+![Backend login](screenshot-backend-login.png)
