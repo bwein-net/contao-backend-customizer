@@ -28,14 +28,22 @@
 
 .headerColor(@color) {
     #header .inner,
-    .tl_login_form:before {
+    .tl_login_form:before,
+    #tl_crawl .progress-bar.running {
         background: @color;
     }
-    #tmenu a:hover, #tmenu a.hover, #tmenu li:hover h2, #tmenu .active h2, #tmenu .burger button:hover {
+    #tmenu sup {
+        color: @color;
+    }
+    #tmenu a:hover, #tmenu a.hover, #tmenu li:hover h2, #tmenu .active h2, #tmenu .burger button:hover,
+    #tmenu li:hover .h2, #tmenu .active .h2 {
         background-color: lighten(@color, 5);
     }
     #tl_navigation .tl_level_2 li.active {
         border-left-color: lighten(@color, 5);
+    }
+    #tl_navigation .menu_level_1 li.current {
+        border-left-color: @color;
     }
 }
 
