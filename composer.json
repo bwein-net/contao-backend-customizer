@@ -23,7 +23,7 @@
     "require": {
         "php": ">=7.0",
         "contao/core-bundle": "^4.4",
-        "oyejorge/less.php": "^1.7"
+        "wikimedia/less.php": "^1.7"
     },
     "require-dev": {
         "contao/manager-plugin": "^2.0",
