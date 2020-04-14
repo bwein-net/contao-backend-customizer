@@ -58,8 +58,10 @@ The following commands are recommended for generation:
 ```
 vendor/bin/contao-console cache:clear --no-warmup
 vendor/bin/contao-console cache:warmup
-vendor/bin/contao-console assets:install --symlink --relative
+vendor/bin/contao-console assets:install web --symlink --relative
 ```
+
+> If you specified `symfony-web-dir`, you have to replace the target directory `web` for `assets:install` with your definition!
 
 ## Screenshots
 
