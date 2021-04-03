@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Backend Customizer for Contao Open Source CMS.
  *
@@ -18,12 +20,12 @@ class StyleSheetGenerator
     /**
      * @var string
      */
-    private $sourceFile = __DIR__.'/../Resources/public/less/backend.less';
+    private $sourceFile = __DIR__.'/../../public/less/backend.less';
 
     /**
      * @var string
      */
-    private $targetFile = __DIR__.'/../Resources/public/css/backend.css';
+    private $targetFile = __DIR__.'/../../public/css/backend.css';
 
     /**
      * @var string
@@ -46,47 +48,23 @@ class StyleSheetGenerator
     private $envColor;
 
     /**
-     * @var string
-     */
-    private $rootDir;
-
-    /**
      * @var Filesystem
      */
     private $fs;
 
-    /**
-     * StyleSheetGenerator constructor.
-     *
-     * @param string          $headerTitle
-     * @param string          $headerColor
-     * @param string          $envTitle
-     * @param string          $envColor
-     * @param string          $rootDir
-     * @param Filesystem|null $fs
-     */
-    public function __construct(
-        string $headerTitle,
-        string $headerColor,
-        string $envTitle,
-        string $envColor,
-        string $rootDir,
-        Filesystem $fs = null
-    ) {
+    public function __construct(string $headerTitle, string $headerColor, string $envTitle, string $envColor, Filesystem $fs = null)
+    {
         $this->headerTitle = $headerTitle;
         $this->headerColor = $headerColor;
         $this->envTitle = $envTitle;
         $this->envColor = $envColor;
-        $this->rootDir = $rootDir;
-        $this->fs = $fs ? $fs : new Filesystem();
+        $this->fs = $fs ?: new Filesystem();
     }
 
     /**
      * @throws \Exception
-     *
-     * @return bool
      */
-    public function generate()
+    public function generate(): bool
     {
         $this->validateSource();
         $this->validateTarget();
@@ -95,17 +73,15 @@ class StyleSheetGenerator
         return true;
     }
 
-    private function validateSource()
+    private function validateSource(): void
     {
         // Check whether the source file exists
         if (!$this->fs->exists($this->sourceFile)) {
-            throw new \InvalidArgumentException(
-                sprintf('The source file "%s" is invalid!', $this->sourceFile)
-            );
+            throw new \InvalidArgumentException(sprintf('The source file "%s" is invalid!', $this->sourceFile));
         }
     }
 
-    private function validateTarget()
+    private function validateTarget(): void
     {
         // Check whether the target file is writable - by clearing the file
         $this->fs->dumpFile($this->targetFile, '');
@@ -114,7 +90,7 @@ class StyleSheetGenerator
     /**
      * @throws \Exception
      */
-    private function generateStyleSheetFile()
+    private function generateStyleSheetFile(): void
     {
         // Create the file
         $this->fs->dumpFile($this->targetFile, $this->compileSourceLess());
@@ -134,10 +110,7 @@ class StyleSheetGenerator
         return $less->compileFile($this->sourceFile);
     }
 
-    /**
-     * @return array
-     */
-    private function getLessVariables()
+    private function getLessVariables(): array
     {
         $variables = [];
 

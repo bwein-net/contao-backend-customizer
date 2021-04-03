@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Backend Customizer for Contao Open Source CMS.
  *
@@ -8,36 +10,35 @@
  * @license MIT
  */
 
-namespace Bwein\BackendCustomizer\EventListener;
+namespace Bwein\BackendCustomizer\EventSubscriber;
 
 use Bwein\BackendCustomizer\Service\StyleSheetGenerator;
 use Symfony\Bundle\FrameworkBundle\Command\AssetsInstallCommand;
+use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\Console\Event\ConsoleCommandEvent;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class AssetsInstallCommandListener
+class ConsoleCommandSubscriber implements EventSubscriberInterface
 {
     /**
      * @var StyleSheetGenerator
      */
     private $generator;
 
-    /**
-     * AssetsInstallCommandListener constructor.
-     *
-     * @param StyleSheetGenerator $generator
-     */
     public function __construct(StyleSheetGenerator $generator)
     {
         $this->generator = $generator;
     }
 
-    /**
-     * @param ConsoleCommandEvent $event
-     */
-    public function onConsoleCommand(ConsoleCommandEvent $event)
+    public static function getSubscribedEvents(): array
     {
-        if (!(($command = $event->getCommand()) instanceof AssetsInstallCommand)) {
+        return [ConsoleEvents::COMMAND => 'onConsoleCommand'];
+    }
+
+    public function onConsoleCommand(ConsoleCommandEvent $event): void
+    {
+        if (!($event->getCommand() instanceof AssetsInstallCommand)) {
             return;
         }
 

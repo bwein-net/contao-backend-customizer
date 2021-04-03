@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Backend Customizer for Contao Open Source CMS.
  *
@@ -10,6 +12,7 @@
 
 namespace Bwein\BackendCustomizer\DependencyInjection;
 
+use Bwein\BackendCustomizer\Service\StyleSheetGenerator;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -20,30 +23,22 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
  */
 class BweinBackendCustomizerExtension extends ConfigurableExtension
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getAlias()
+    public function getAlias(): string
     {
         return 'bwein_backend_customizer';
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function loadInternal(array $mergedConfig, ContainerBuilder $container)
+    protected function loadInternal(array $mergedConfig, ContainerBuilder $container): void
     {
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('listener.yml');
-        $loader->load('services.yml');
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../../config'));
+        $loader->load('services.yaml');
 
         // Set the parameters as arguments for stylesheet generator
-        if ($container->hasDefinition('bwein.backend_customizer.stylesheet_generator')) {
-            $container->getDefinition('bwein.backend_customizer.stylesheet_generator')
-                ->setArgument(0, $mergedConfig['header_title'])
-                ->setArgument(1, $mergedConfig['header_color'])
-                ->setArgument(2, $mergedConfig['env_title'])
-                ->setArgument(3, $mergedConfig['env_color']);
-        }
+        $container->getDefinition(StyleSheetGenerator::class)
+            ->setArgument(0, $mergedConfig['header_title'])
+            ->setArgument(1, $mergedConfig['header_color'])
+            ->setArgument(2, $mergedConfig['env_title'])
+            ->setArgument(3, $mergedConfig['env_color'])
+        ;
     }
 }

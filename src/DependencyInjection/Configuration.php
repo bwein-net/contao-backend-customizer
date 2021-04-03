@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Backend Customizer for Contao Open Source CMS.
  *
@@ -17,21 +19,19 @@ class Configuration implements ConfigurationInterface
 {
     /**
      * Generates the configuration tree builder.
-     *
-     * @return TreeBuilder
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('bwein_backend_customizer');
-
-        $rootNode
+        $treeBuilder = new TreeBuilder('bwein_backend_customizer');
+        $treeBuilder
+            ->getRootNode()
             ->children()
                 ->scalarNode('header_title')->defaultValue('')->end()
                 ->scalarNode('header_color')->defaultValue('')->end()
                 ->scalarNode('env_title')->defaultValue('')->end()
                 ->scalarNode('env_color')->defaultValue('')->end()
-            ->end();
+            ->end()
+        ;
 
         return $treeBuilder;
     }

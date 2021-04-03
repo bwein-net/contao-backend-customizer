@@ -8,4 +8,4 @@
 composer.lock
 
 # generated Stylesheet
-/src/Resources/public/css/backend.css
+/public/css/backend.css
