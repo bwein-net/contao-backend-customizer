@@ -1,48 +1,65 @@
 {
-    "name": "bwein-net/contao-backend-customizer",
-    "description": "Backend Customizer for Contao Open Source CMS",
-    "keywords": [
-        "contao",
-        "backend",
-        "customizer",
-        "header",
-        "environment",
-        "custom",
-        "theme",
-        "color",
-        "css"
-    ],
-    "type": "contao-bundle",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "bwein.net",
-            "homepage": "https://bwein.net/"
-        }
-    ],
-    "require": {
-        "php": ">=7.0",
-        "contao/core-bundle": "^4.4",
-        "wikimedia/less.php": "^1.7"
+  "name": "bwein-net/contao-backend-customizer",
+  "description": "Backend Customizer for Contao Open Source CMS",
+  "keywords": [
+    "contao",
+    "backend",
+    "customizer",
+    "header",
+    "environment",
+    "custom",
+    "theme",
+    "color",
+    "css"
+  ],
+  "type": "contao-bundle",
+  "homepage": "https://github.com/bwein-net/ontao-backend-customizer",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "bwein.net",
+      "homepage": "https://bwein.net/",
+      "role": "Developer"
     },
-    "require-dev": {
-        "contao/easy-coding-standard": "^3.0",
-        "contao/manager-plugin": "^2.0"
-    },
-    "conflict": {
-        "contao/manager-plugin": "<2.0 || >=3.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "Bwein\\BackendCustomizer\\": "src/"
-        }
-    },
-    "extra": {
-        "contao-manager-plugin": "Bwein\\BackendCustomizer\\ContaoManager\\Plugin"
-    },
-    "scripts": {
-        "ecs": [
-            "vendor/bin/ecs check src/ --fix --ansi"
-        ]
+    {
+      "name": "Ralf Baussenwein",
+      "homepage": "https://github.com/rabauss",
+      "role": "Developer"
     }
+  ],
+  "support": {
+    "issues": "https://github.com/bwein-net/ontao-backend-customizer/issues",
+    "source": "https://github.com/bwein-net/ontao-backend-customizer"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/rabauss"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "contao/core-bundle": "^4.4",
+    "wikimedia/less.php": "^1.7"
+  },
+  "require-dev": {
+    "contao/easy-coding-standard": "^3.0",
+    "contao/manager-plugin": "^2.0"
+  },
+  "conflict": {
+    "contao/manager-plugin": "<2.0 || >=3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bwein\\BackendCustomizer\\": "src/"
+    }
+  },
+  "extra": {
+    "contao-manager-plugin": "Bwein\\BackendCustomizer\\ContaoManager\\Plugin"
+  },
+  "scripts": {
+    "ecs": [
+      "vendor/bin/ecs check src/ --fix --ansi"
+    ]
+  }
 }
