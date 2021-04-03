@@ -26,8 +26,8 @@
         "wikimedia/less.php": "^1.7"
     },
     "require-dev": {
-        "contao/manager-plugin": "^2.0",
-        "friendsofphp/php-cs-fixer": "^2.12"
+        "contao/easy-coding-standard": "^3.0",
+        "contao/manager-plugin": "^2.0"
     },
     "conflict": {
         "contao/manager-plugin": "<2.0 || >=3.0"
@@ -39,5 +39,10 @@
     },
     "extra": {
         "contao-manager-plugin": "Bwein\\BackendCustomizer\\ContaoManager\\Plugin"
+    },
+    "scripts": {
+        "ecs": [
+            "vendor/bin/ecs check src/ --fix --ansi"
+        ]
     }
 }
