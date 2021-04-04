@@ -9,20 +9,20 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use Symplify\EasyCodingStandard\ValueObject\Option;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
-    $vendorDir = __DIR__.'/vendor';
+    $vendorDir = __DIR__ . '/vendor';
 
     if (!is_dir($vendorDir)) {
-        $vendorDir = __DIR__.'/../../vendor';
+        $vendorDir = __DIR__ . '/../../vendor';
     }
 
-    $containerConfigurator->import($vendorDir.'/contao/easy-coding-standard/config/self.php');
+    $containerConfigurator->import($vendorDir . '/contao/easy-coding-standard/config/self.php');
 
     $parameters = $containerConfigurator->parameters();
     $parameters->set(
         Option::SKIP,
         [
             '*/templates/*.html5',
-            MethodChainingIndentationFixer::class => [
+            MethodChainingIndentationFixer::class   => [
                 '*/DependencyInjection/Configuration.php',
             ],
             DisallowArrayTypeHintSyntaxSniff::class => [
