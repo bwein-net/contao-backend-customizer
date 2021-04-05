@@ -9,7 +9,7 @@
     "gulp-svgo": "^2.1.1",
     "gulp-uglify": "^3.0.2",
     "pump": "^3.0",
-    "yargs-parser": ">=5.0.0-security.0"
+    "yargs-parser": ">=5.0.1"
   },
   "private": true
 }
