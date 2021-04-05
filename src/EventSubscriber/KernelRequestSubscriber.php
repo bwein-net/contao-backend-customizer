@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace Bwein\BackendCustomizer\EventSubscriber;
 
 use Contao\CoreBundle\Routing\ScopeMatcher;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -21,12 +20,10 @@ use Symfony\Component\HttpKernel\KernelEvents;
 class KernelRequestSubscriber implements EventSubscriberInterface
 {
     protected $scopeMatcher;
-    private $params;
 
-    public function __construct(ScopeMatcher $scopeMatcher, ParameterBagInterface $params)
+    public function __construct(ScopeMatcher $scopeMatcher)
     {
         $this->scopeMatcher = $scopeMatcher;
-        $this->params = $params;
     }
 
     public static function getSubscribedEvents(): array
@@ -39,11 +36,8 @@ class KernelRequestSubscriber implements EventSubscriberInterface
         $request = $e->getRequest();
 
         if ($this->scopeMatcher->isBackendRequest($request)) {
-            $assetFilePath = 'bundles/bweinbackendcustomizer/css/backend.css';
-
-            if (file_exists($this->params->get('contao.web_dir').'/'.$assetFilePath)) {
-                $GLOBALS['TL_CSS'][] = $assetFilePath;
-            }
+            $GLOBALS['TL_CSS'][] = 'bundles/bweinbackendcustomizer/css/backend.min.css';
+            $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/bweinbackendcustomizer/js/backend.min.js';
         }
     }
 }

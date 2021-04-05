@@ -7,5 +7,5 @@
 /vendor/
 composer.lock
 
-# generated Stylesheet
-/public/css/backend.css
+# Node
+/node_modules/

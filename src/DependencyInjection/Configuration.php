@@ -23,13 +23,33 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('bwein_backend_customizer');
-        $treeBuilder
-            ->getRootNode()
+        $rootNode = $treeBuilder->getRootNode();
+        $rootNode
             ->children()
-                ->scalarNode('header_title')->defaultValue('')->end()
-                ->scalarNode('header_color')->defaultValue('')->end()
-                ->scalarNode('env_title')->defaultValue('')->end()
-                ->scalarNode('env_color')->defaultValue('')->end()
+                ->scalarNode('header_title')
+                    ->info('Adds a title to the header next to the logo.')
+                    ->defaultValue('')
+                ->end()
+                ->scalarNode('header_color')
+                    ->info('Configures the header color.')
+                    ->defaultValue('')
+                ->end()
+                ->booleanNode('header_invert')
+                    ->info('Inverts the elements of the header.')
+                    ->defaultValue(false)
+                ->end()
+                ->scalarNode('env_title')
+                    ->info('Specifies the title of the environment badge.')
+                    ->defaultValue('')
+                ->end()
+                ->scalarNode('env_color')
+                    ->info('Configures the color of the environment badge.')
+                    ->defaultValue('')
+                ->end()
+                ->scalarNode('main_color')
+                    ->info('Configures the background color of the main container.')
+                    ->defaultValue('')
+                ->end()
             ->end()
         ;
 

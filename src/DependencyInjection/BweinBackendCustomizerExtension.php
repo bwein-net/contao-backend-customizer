@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Bwein\BackendCustomizer\DependencyInjection;
 
-use Bwein\BackendCustomizer\Service\StyleSheetGenerator;
+use Bwein\BackendCustomizer\ParameterBag\BackendParameterBag;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -33,12 +33,6 @@ class BweinBackendCustomizerExtension extends ConfigurableExtension
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../../config'));
         $loader->load('services.yaml');
 
-        // Set the parameters as arguments for stylesheet generator
-        $container->getDefinition(StyleSheetGenerator::class)
-            ->setArgument(0, $mergedConfig['header_title'])
-            ->setArgument(1, $mergedConfig['header_color'])
-            ->setArgument(2, $mergedConfig['env_title'])
-            ->setArgument(3, $mergedConfig['env_color'])
-        ;
+        $container->getDefinition(BackendParameterBag::class)->setArgument(0, $mergedConfig);
     }
 }
