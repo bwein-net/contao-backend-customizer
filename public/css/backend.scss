@@ -76,7 +76,8 @@
 #header h1,
 #header h1 .env-title,
 #main .tl_login_form .custom-title,
-#tmenu,
+#tmenu > li > a,
+#tmenu > li > span,
 #tmenu sup {
   filter: #{"invert(var(--bwein-header-invert))"};
 }
