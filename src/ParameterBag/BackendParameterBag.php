@@ -100,7 +100,7 @@ class BackendParameterBag
 
     public function getEnvColor(): string
     {
-        if (!empty($this->envColor)) {
+        if (null !== $this->envColor) {
             return $this->envColor;
         }
 
@@ -125,7 +125,7 @@ class BackendParameterBag
 
     public function getMainColor(): string
     {
-        if (!empty($this->mainColor)) {
+        if (null !== $this->mainColor) {
             return $this->mainColor;
         }
 
