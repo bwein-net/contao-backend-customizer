@@ -44,11 +44,11 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->scalarNode('env_color')
                     ->info('Configures the color of the environment badge.')
-                    ->defaultValue('')
+                    ->defaultValue(null)
                 ->end()
                 ->scalarNode('main_color')
                     ->info('Configures the background color of the main container.')
-                    ->defaultValue('')
+                    ->defaultValue(null)
                 ->end()
             ->end()
         ;
