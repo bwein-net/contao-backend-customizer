@@ -5,7 +5,7 @@ var gulp = require('gulp'),
     ignore = require('gulp-ignore'),
     rename = require('gulp-rename'),
     svgo = require('gulp-svgo'),
-    sass = require('gulp-sass'),
+    sass = require('gulp-sass')(require('sass')),
     uglify = require('gulp-uglify'),
     pump = require('pump');
 
