@@ -10,8 +10,8 @@
     "gulp-uglify": "^3.0.2",
     "nth-check": ">=2.0.1",
     "pump": "^3.0",
-    "sass": "^1.45.2",
-    "yargs-parser": "^21.0.0"
+    "sass": "^1.49.10",
+    "yargs-parser": "^21.0.1"
   },
   "private": true
 }
