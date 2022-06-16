@@ -1,4 +1,5 @@
 {
+  "name": "contao-backend-customizer",
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-cli": "^2.3.0",
@@ -8,9 +9,9 @@
     "gulp-sass": "^5.1.0",
     "gulp-svgo": "^2.2.1",
     "gulp-uglify": "^3.0.2",
-    "nth-check": ">=2.0.1",
+    "nth-check": ">=2.1.1",
     "pump": "^3.0",
-    "sass": "^1.49.10",
+    "sass": "^1.52.3",
     "yargs-parser": "^21.0.1"
   },
   "private": true
