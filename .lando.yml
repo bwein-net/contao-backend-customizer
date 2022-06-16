@@ -4,6 +4,9 @@ services:
     appserver:
         type: php:8.1
         via: cli
+    node:
+        type: node:16
+        via: cli
 
 tooling:
     ecs-init:
@@ -13,3 +16,11 @@ tooling:
     ecs:
         service: appserver
         cmd: composer ecs
+
+    npm:
+        service: node
+        description: Run npm commands
+
+    gulp:
+        service: node
+        description: Run gulp commands
