@@ -39,7 +39,7 @@
     }
   ],
   "require": {
-    "php": "^7.2 || ^8.0",
+    "php": "^7.4 || ^8.0",
     "contao/core-bundle": "^4.9",
     "symfony/config": "^4.4 || ^5.2",
     "symfony/console": "^4.4 || ^5.2",
