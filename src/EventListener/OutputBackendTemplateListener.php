@@ -20,10 +20,7 @@ use Contao\CoreBundle\ServiceAnnotation\Hook;
  */
 class OutputBackendTemplateListener
 {
-    /**
-     * @var BackendParameterBag
-     */
-    private $params;
+    private BackendParameterBag $params;
 
     public function __construct(BackendParameterBag $params)
     {
@@ -51,10 +48,10 @@ class OutputBackendTemplateListener
         ];
 
         return implode(' ', array_map(
-                static function ($v, $k) { return sprintf('data-bwein-%s="%s"', $k, $v); },
-                $attributes,
-                array_keys($attributes)
-            )).' ';
+            static fn ($v, $k) => sprintf('data-bwein-%s="%s"', $k, $v),
+            $attributes,
+            array_keys($attributes)
+        )).' ';
     }
 
     private function getStyles(): string
@@ -82,10 +79,10 @@ class OutputBackendTemplateListener
         }
 
         $style = implode('', array_map(
-                static function ($v, $k) { return sprintf('--bwein-%s:%s;', $k, $v); },
-                $styles,
-                array_keys($styles)
-            ));
+            static fn ($v, $k) => sprintf('--bwein-%s:%s;', $k, $v),
+            $styles,
+            array_keys($styles)
+        ));
 
         return sprintf("<style>:root {%s}</style>\n", $style);
     }

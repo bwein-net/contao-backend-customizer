@@ -14,34 +14,17 @@ namespace Bwein\BackendCustomizer\ParameterBag;
 
 class BackendParameterBag
 {
-    /**
-     * @var string
-     */
-    private $headerTitle;
+    private string $headerTitle;
 
-    /**
-     * @var string
-     */
-    private $headerColor;
-    /**
-     * @var bool
-     */
-    private $headerInvert;
+    private string $headerColor;
 
-    /**
-     * @var string
-     */
-    private $mainColor;
+    private bool $headerInvert;
 
-    /**
-     * @var string
-     */
-    private $envTitle;
+    private ?string $mainColor;
 
-    /**
-     * @var string
-     */
-    private $envColor;
+    private string $envTitle;
+
+    private ?string $envColor;
 
     public function __construct(array $config = [])
     {
