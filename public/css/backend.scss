@@ -64,7 +64,8 @@
   background-color: var(--bwein-header-color);
 }
 
-#tmenu a:hover, #tmenu a.hover, #tmenu li:hover .h2, #tmenu .active .h2, #tmenu .burger button:hover {
+#tmenu a:hover, #tmenu a.hover, #tmenu li:hover .profile button, #tmenu .active .profile button, #tmenu .burger button:hover,
+#tmenu li:hover .h2, #tmenu .active .h2 {
   background-color: var(--bwein-header-color-hover);
 }
 
