@@ -54,6 +54,11 @@
       "Bwein\\BackendCustomizer\\": "src/"
     }
   },
+  "config": {
+    "allow-plugins": {
+      "contao-components/installer": true
+    }
+  },
   "extra": {
     "contao-manager-plugin": "Bwein\\BackendCustomizer\\ContaoManager\\Plugin"
   },
