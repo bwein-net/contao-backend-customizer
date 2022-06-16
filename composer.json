@@ -41,11 +41,11 @@
   "require": {
     "php": "^7.4 || ^8.0",
     "contao/core-bundle": "^4.9",
-    "symfony/config": "^4.4 || ^5.2",
-    "symfony/console": "^4.4 || ^5.2",
-    "symfony/dependency-injection": "^4.4 || ^5.2",
-    "symfony/event-dispatcher": "^4.4 || ^5.2",
-    "symfony/http-kernel": "^4.4 || ^5.2"
+    "symfony/config": "^4.4 || ^5.4",
+    "symfony/console": "^4.4 || ^5.4",
+    "symfony/dependency-injection": "^4.4 || ^5.4",
+    "symfony/event-dispatcher": "^4.4 || ^5.4",
+    "symfony/http-kernel": "^4.4 || ^5.4"
   },
   "require-dev": {
   },
