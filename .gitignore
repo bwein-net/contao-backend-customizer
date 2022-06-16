@@ -6,6 +6,8 @@
 # Composer
 /vendor/
 composer.lock
+/tools/*/vendor
+/tools/ecs/composer.lock
 
 # Node
 /node_modules/
