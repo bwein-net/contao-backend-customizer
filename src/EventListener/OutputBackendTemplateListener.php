@@ -31,7 +31,7 @@ class OutputBackendTemplateListener
     {
         if ('be_login' === $template || 'be_login_two_factor' === $template || 'be_main' === $template) {
             $buffer = str_replace(
-                ['</head>', '<body '],
+                ['</head>', '<body'],
                 [$this->getStyles().'</head>', '<body '.$this->getAttributes()],
                 $buffer
             );
