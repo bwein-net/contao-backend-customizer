@@ -9,6 +9,10 @@ services:
         via: cli
 
 tooling:
+    composer:
+        service: appserver
+        cmd: composer
+
     ecs-init:
         service: appserver
         cmd: composer install -d tools/ecs
