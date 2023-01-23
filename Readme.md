@@ -34,8 +34,8 @@ Ideally in the ``config/parameters.yml`` you can set the environment parameters,
 # config/parameters.yml
 bwein_backend_customizer:
     env_title: 'local'
-    env_color: ''
-    main_color: ''
+    env_color: ~
+    main_color: ~
 ```
 
 The ``env_title`` is shown as badge on the back end header and login form.
@@ -44,7 +44,7 @@ You can set the following ``env_title`` values - and then the environment badge 
  * ``'local'`` (red)
  * ``'dev'`` (orange)
  * ``'staging'`` (green)
- * ``'prod'`` (none - same as default '')
+ * ``'prod'`` (none - same as default `~`)
 
 To override the default color for the environment badge and main container, you can set the param ``env_color`` and ``main_color`` with color values.
 Besides, if you use a different ``env_title``, the ``env_color`` is mandatory to show the environment badge!
