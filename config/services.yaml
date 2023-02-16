@@ -6,3 +6,7 @@ services:
     Bwein\BackendCustomizer\:
         resource: '../src/*'
         exclude: '../src/{DependencyInjection}'
+
+    Bwein\BackendCustomizer\EventListener\BackendResponseListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.response }

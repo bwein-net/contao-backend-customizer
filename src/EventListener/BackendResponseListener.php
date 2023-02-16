@@ -13,31 +13,41 @@ declare(strict_types=1);
 namespace Bwein\BackendCustomizer\EventListener;
 
 use Bwein\BackendCustomizer\ParameterBag\BackendParameterBag;
-use Contao\CoreBundle\ServiceAnnotation\Hook;
+use Contao\CoreBundle\Routing\ScopeMatcher;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
-/**
- * @Hook("outputBackendTemplate")
- */
-class OutputBackendTemplateListener
+class BackendResponseListener
 {
+    protected ScopeMatcher $scopeMatcher;
     private BackendParameterBag $params;
 
-    public function __construct(BackendParameterBag $params)
+    public function __construct(ScopeMatcher $scopeMatcher, BackendParameterBag $params)
     {
+        $this->scopeMatcher = $scopeMatcher;
         $this->params = $params;
     }
 
-    public function __invoke(string $buffer, string $template): string
+    public function __invoke(ResponseEvent $event): void
     {
-        if ('be_login' === $template || 'be_login_two_factor' === $template || 'be_main' === $template) {
-            $buffer = str_replace(
-                ['</head>', '<body'],
-                [$this->getStyles().'</head>', '<body '.$this->getAttributes()],
-                $buffer
-            );
+        $request = $event->getRequest();
+
+        if (!$this->scopeMatcher->isBackendRequest($request)) {
+            return;
         }
 
-        return $buffer;
+        $response = $event->getResponse();
+        $content = $response->getContent();
+
+        if (empty($content)) {
+            return;
+        }
+
+        $content = str_replace(
+            ['</head>', '<body'],
+            [$this->getStyles().'</head>', '<body '.$this->getAttributes()],
+            $content
+        );
+        $event->setResponse($response->setContent($content));
     }
 
     private function getAttributes(): string
