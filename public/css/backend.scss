@@ -57,6 +57,7 @@
   color: var(--bwein-header-color);
 }
 
+#tl_navigation [class^="menu_level_"] > li.current > a,
 #tl_navigation .menu_level_1 li.current {
   border-left-color: var(--bwein-header-color);
 }
@@ -69,6 +70,11 @@
 #tmenu a:hover, #tmenu a.hover, #tmenu li:hover .profile button, #tmenu .active .profile button, #tmenu .burger button:hover,
 #tmenu li:hover .h2, #tmenu .active .h2 {
   background-color: var(--bwein-header-color-hover);
+}
+
+a:hover, a:active,
+.submit_container a:hover {
+  color: var(--bwein-header-color);
 }
 
 // Header invert
@@ -127,4 +133,20 @@
 
 #top #main {
   background: var(--bwein-top-main-color);
+}
+
+html[data-color-scheme="dark"] {
+  #main, #top #main {
+    background-repeat: no-repeat;
+    background-size: 10000% 100%;
+    background-position-x: 10%;
+  }
+
+  #main {
+    background-image: linear-gradient(90deg, black, var(--bwein-login-main-color), white);
+  }
+
+  #top #main {
+    background-image: linear-gradient(90deg, black, var(--bwein-top-main-color), white);
+  }
 }
