@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Bwein\BackendCustomizer\ContaoManager;
 
 use Bwein\BackendCustomizer\BweinBackendCustomizerBundle;
+use Bwein\SystemInformation\BweinSystemInformationBundle;
 use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
@@ -24,7 +25,7 @@ class Plugin implements BundlePluginInterface
     {
         return [
             BundleConfig::create(BweinBackendCustomizerBundle::class)
-                ->setLoadAfter([ContaoCoreBundle::class]),
+                ->setLoadAfter([ContaoCoreBundle::class, BweinSystemInformationBundle::class]),
         ];
     }
 }
