@@ -1,13 +1,14 @@
 'use strict';
 
-var gulp = require('gulp'),
-    csso = require('gulp-csso'),
-    ignore = require('gulp-ignore'),
-    rename = require('gulp-rename'),
-    svgo = require('gulp-svgo'),
-    sass = require('gulp-sass')(require('sass')),
-    uglify = require('gulp-uglify'),
-    pump = require('pump');
+import gulp from 'gulp';
+import csso from 'gulp-csso';
+import gulpSass from 'gulp-sass';
+import sassEmbedded from 'sass-embedded';
+const sass = gulpSass(sassEmbedded);
+import ignore from 'gulp-ignore';
+import rename from 'gulp-rename';
+import uglify from 'gulp-uglify';
+import pump from 'pump';
 
 gulp.task('minify-public-js', function (cb) {
     pump(

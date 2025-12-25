@@ -2,20 +2,16 @@ name: contao-backend-customizer
 
 services:
     appserver:
-        type: php:8.1
+        type: php:8.2
         via: cli
     node:
-        type: node:16
+        type: node:24
         via: cli
 
 tooling:
     composer:
         service: appserver
         cmd: composer
-
-    ecs-init:
-        service: appserver
-        cmd: composer install -d tools/ecs
 
     ecs:
         service: appserver
