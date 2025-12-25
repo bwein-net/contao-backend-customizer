@@ -20,11 +20,11 @@ class BackendParameterBag
 
     private bool $headerInvert;
 
-    private ?string $mainColor;
+    private string|null $mainColor;
 
     private string $envTitle;
 
-    private ?string $envColor;
+    private string|null $envColor;
 
     public function __construct(array $config = [])
     {

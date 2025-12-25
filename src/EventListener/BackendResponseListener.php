@@ -19,6 +19,7 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
 class BackendResponseListener
 {
     protected ScopeMatcher $scopeMatcher;
+
     private BackendParameterBag $params;
 
     public function __construct(ScopeMatcher $scopeMatcher, BackendParameterBag $params)
@@ -45,7 +46,7 @@ class BackendResponseListener
         $content = str_replace(
             ['</head>', '<body'],
             [$this->getStyles().'</head>', '<body '.$this->getAttributes()],
-            $content
+            $content,
         );
         $event->setResponse($response->setContent($content));
     }
@@ -58,9 +59,9 @@ class BackendResponseListener
         ];
 
         return implode(' ', array_map(
-            static fn ($v, $k) => sprintf('data-bwein-%s="%s"', $k, $v),
+            static fn ($v, $k) => \sprintf('data-bwein-%s="%s"', $k, $v),
             $attributes,
-            array_keys($attributes)
+            array_keys($attributes),
         )).' ';
     }
 
@@ -89,11 +90,11 @@ class BackendResponseListener
         }
 
         $style = implode('', array_map(
-            static fn ($v, $k) => sprintf('--bwein-%s:%s;', $k, $v),
+            static fn ($v, $k) => \sprintf('--bwein-%s:%s;', $k, $v),
             $styles,
-            array_keys($styles)
+            array_keys($styles),
         ));
 
-        return sprintf("<style>:root {%s}</style>\n", $style);
+        return \sprintf("<style>:root {%s}</style>\n", $style);
     }
 }
