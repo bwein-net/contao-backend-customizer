@@ -89,21 +89,12 @@ class BackendParameterBag
 
         $fallback = '';
 
-        switch ($this->envTitle) {
-            case 'local':
-                $fallback = '#d43f3a';
-                break;
-
-            case 'dev':
-                $fallback = '#eea236';
-                break;
-
-            case 'staging':
-                $fallback = '#4cae4c';
-                break;
-        }
-
-        return $fallback;
+        return match ($this->envTitle) {
+            'local' => '#d43f3a',
+            'dev' => '#eea236',
+            'staging' => '#4cae4c',
+            default => $fallback,
+        };
     }
 
     public function getMainColor(): string
@@ -114,20 +105,11 @@ class BackendParameterBag
 
         $fallback = '';
 
-        switch ($this->envTitle) {
-            case 'local':
-                $fallback = '#efb9b8';
-                break;
-
-            case 'dev':
-                $fallback = '#fae3c3';
-                break;
-
-            case 'staging':
-                $fallback = '#b5deb5';
-                break;
-        }
-
-        return $fallback;
+        return match ($this->envTitle) {
+            'local' => '#efb9b8',
+            'dev' => '#fae3c3',
+            'staging' => '#b5deb5',
+            default => $fallback,
+        };
     }
 }

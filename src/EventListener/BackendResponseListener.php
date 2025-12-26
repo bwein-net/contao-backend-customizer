@@ -18,14 +18,10 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 class BackendResponseListener
 {
-    protected ScopeMatcher $scopeMatcher;
-
-    private BackendParameterBag $params;
-
-    public function __construct(ScopeMatcher $scopeMatcher, BackendParameterBag $params)
-    {
-        $this->scopeMatcher = $scopeMatcher;
-        $this->params = $params;
+    public function __construct(
+        protected ScopeMatcher $scopeMatcher,
+        private readonly BackendParameterBag $params,
+    ) {
     }
 
     public function __invoke(ResponseEvent $event): void
