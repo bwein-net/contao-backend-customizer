@@ -4,6 +4,16 @@ services:
     appserver:
         type: php:8.2
         via: cli
+        overrides:
+            extra_hosts:
+                - ${LANDO_HOST_IP_DEV:-host}:host-gateway
+            environment:
+                PHP_IDE_CONFIG: "serverName=lando"
+                COMPOSER_CACHE_DIR: "/lando/composer_cache"
+                XDEBUG_SESSION_START: lando
+            volumes:
+                - /app/vendor
+                - ./vendor:/host_vendor
     node:
         type: node:24
         via: cli
@@ -12,6 +22,13 @@ tooling:
     composer:
         service: appserver
         cmd: composer
+
+    vendor-sync:
+        service: appserver
+        description: Sync vendor to host
+        cmd:
+            - echo "Sync vendor to host..."
+            - rsync -rtzL --delete --info=progress2 /app/vendor/ /host_vendor/
 
     ecs:
         service: appserver
