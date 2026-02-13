@@ -5,6 +5,8 @@
   // - Reacts to dynamic page swaps (MutationObserver + Turbo/Turbolinks/popstate)
   const HEADER_DATA_KEY = 'bweinHeaderTitle';
   const ENV_DATA_KEY = 'bweinEnvTitle';
+  const HEADER_APPLIED_KEY = HEADER_DATA_KEY + 'Applied';
+  const ENV_APPLIED_KEY = ENV_DATA_KEY + 'Applied';
   const HEADER_ANCHOR_SEL = '#header h1 a';
   const LOGIN_FORM_INNER_SEL = '#main .tl_login_form .formbody';
 
@@ -30,6 +32,7 @@
     const sel = `.${cls}[data-bwein="1"]`;
     const existing = parent.querySelector(sel);
     if (existing) {
+      if (existing.textContent === text) return existing;
       existing.textContent = text;
       return existing;
     }
@@ -75,11 +78,25 @@
       const strayEnv = document.querySelector('.env-title[data-bwein="1"]');
       if (strayEnv && !headerAnchor.contains(strayEnv)) headerAnchor.appendChild(strayEnv);
 
-      if (headerTitle) upsert(headerAnchor, 'custom-title', headerTitle);
-      else removeIfExists(headerAnchor, 'custom-title');
+      if (headerTitle) {
+        if (body.dataset[HEADER_APPLIED_KEY] !== headerTitle) {
+          upsert(headerAnchor, 'custom-title', headerTitle);
+          body.dataset[HEADER_APPLIED_KEY] = headerTitle;
+        }
+      } else {
+        removeIfExists(headerAnchor, 'custom-title');
+        delete body.dataset[HEADER_APPLIED_KEY];
+      }
 
-      if (envTitle) upsert(headerAnchor, 'env-title', envTitle);
-      else removeIfExists(headerAnchor, 'env-title');
+      if (envTitle) {
+        if (body.dataset[ENV_APPLIED_KEY] !== envTitle) {
+          upsert(headerAnchor, 'env-title', envTitle);
+          body.dataset[ENV_APPLIED_KEY] = envTitle;
+        }
+      } else {
+        removeIfExists(headerAnchor, 'env-title');
+        delete body.dataset[ENV_APPLIED_KEY];
+      }
 
       // remove empty custom-header if present
       const customHeader = document.querySelector('.custom-header[data-bwein="1"]');
@@ -98,17 +115,28 @@
         loginForm.insertBefore(customHeader, loginFormInner);
       }
 
-      if (headerTitle) upsert(customHeader, 'custom-title', headerTitle);
-      else removeIfExists(customHeader, 'custom-title');
+      if (headerTitle) {
+        if (body.dataset[HEADER_APPLIED_KEY] !== headerTitle) {
+          upsert(customHeader, 'custom-title', headerTitle);
+          body.dataset[HEADER_APPLIED_KEY] = headerTitle;
+        }
+      } else {
+        removeIfExists(customHeader, 'custom-title');
+        delete body.dataset[HEADER_APPLIED_KEY];
+      }
 
       if (envTitle) {
         const headline = loginFormInner.querySelector('h1');
         if (!upsert(loginFormInner, 'env-title', envTitle, headline || null)) {
-          upsert(customHeader, 'env-title', envTitle);
+          if (body.dataset[ENV_APPLIED_KEY] !== envTitle) {
+            upsert(customHeader, 'env-title', envTitle);
+            body.dataset[ENV_APPLIED_KEY] = envTitle;
+          }
         }
       } else {
         removeIfExists(loginFormInner, 'env-title');
         removeIfExists(customHeader, 'env-title');
+        delete body.dataset[ENV_APPLIED_KEY];
       }
       return;
     }
