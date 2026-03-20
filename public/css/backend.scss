@@ -154,3 +154,15 @@ html[data-color-scheme="dark"] {
     background-image: linear-gradient(90deg, black, var(--bwein-top-main-color), white);
   }
 }
+
+/* When the backend search is present in the header, limit the custom title
+   and show an ellipsis on overflow. Uses :has() so the rule only applies
+   only if .backend-search exists inside #header. */
+#header:has(.backend-search) h1 a .custom-title {
+  display: inline-block;
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
