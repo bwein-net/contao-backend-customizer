@@ -4,12 +4,21 @@
   --bwein-header-invert: 0;
   --bwein-env-color: #0F1C26;
   --bwein-login-main-color: var(--bwein-main-color, #ffffff);
-  --bwein-top-main-color: var(--bwein-main-color, #eaeaec);
+  --bwein-top-main-color: var(--bwein-main-color, #f6f6f8);
   --bwein-title-color: #fff;
+  --contao: var(--bwein-header-color);
+  --header-bg: var(--bwein-header-color);
+  --nav-active-color: var(--bwein-header-color);
+  --nav-mobile-active-color: var(--bwein-header-color);
+  --nav-mobile-active-border-color: var(--bwein-header-color);
+  --nav-mobile-btn-clr: var(--bwein-header-color);
+  --progress-running: var(--bwein-header-color);
+  --skip-focus-border-color: var(--bwein-header-color);
 }
 
 html[data-color-scheme="dark"] {
   --bwein-title-color: #ddd;
+  --contao: var(--bwein-header-color);
 }
 
 // Header title
@@ -135,23 +144,25 @@ a:hover, a:active,
   background: var(--bwein-login-main-color);
 }
 
+#main .login-providers, #main .tl_login_form {
+    background: none;
+}
+
 #top #main {
   background: var(--bwein-top-main-color);
 }
 
 html[data-color-scheme="dark"] {
-  #main, #top #main {
-    background-repeat: no-repeat;
-    background-size: 10000% 100%;
-    background-position-x: 10%;
-  }
-
+  /* Use an overlay gradient (semi-transparent black) over the main color
+     for consistent darkening and wide browser support. */
   #main {
-    background-image: linear-gradient(90deg, black, var(--bwein-login-main-color), white);
+    background: linear-gradient(rgba(0,0,0,0.92), rgba(0,0,0,0.92)), var(--bwein-login-main-color);
+    background-blend-mode: normal;
   }
 
   #top #main {
-    background-image: linear-gradient(90deg, black, var(--bwein-top-main-color), white);
+    background: linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.88)), var(--bwein-top-main-color);
+    background-blend-mode: normal;
   }
 }
 
