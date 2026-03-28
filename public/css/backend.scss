@@ -19,6 +19,7 @@
 html[data-color-scheme="dark"] {
   --bwein-title-color: #ddd;
   --contao: var(--bwein-header-color);
+  --body-bg: #1b1d21;
 }
 
 // Header title
@@ -160,6 +161,7 @@ html[data-color-scheme="dark"] {
     background-blend-mode: normal;
   }
 
+  #left,
   #top #main {
     background: linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.88)), var(--bwein-top-main-color);
     background-blend-mode: normal;
