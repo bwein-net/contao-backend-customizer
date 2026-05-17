@@ -26,8 +26,7 @@ html[data-color-scheme="dark"] {
 
   display: flex;
   align-items: baseline;
-  border-radius: 20px;
-  margin-left: 3px;
+  border-radius: 0 20px 20px 0;
 
   .app-title {
     color: var(--bwein-title-color);
@@ -59,14 +58,12 @@ html[data-color-scheme="dark"] {
 
   .custom-header {
     display: flex;
-    justify-content: center;
-    padding: 13px;
-    text-align: center;
+    padding: 13px 13px 13px 45px;
     font-size: 1rem;
     color: var(--bwein-title-color);
     background: #f47c00;
-    border-radius: 20px;
-    margin: 0 15px;
+    border-radius: 0 20px 20px 0;
+    margin-right: 15px;
   }
 }
 
@@ -148,7 +145,7 @@ html[data-color-scheme="dark"] {
    only if .backend-search exists inside #header. */
 #header:has(.backend-search) .inner #home .custom-title {
   display: inline-block;
-  max-width: 68px;
+  max-width: 70px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
