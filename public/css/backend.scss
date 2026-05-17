@@ -7,7 +7,6 @@
   --bwein-top-main-color: var(--bwein-main-color, #f6f6f8);
   --bwein-title-color: #fff;
   --contao: var(--bwein-header-color);
-  --header-bg: var(--bwein-header-color);
   --nav-active-color: var(--bwein-header-color);
   --nav-mobile-active-color: var(--bwein-header-color);
   --nav-mobile-active-border-color: var(--bwein-header-color);
@@ -23,15 +22,18 @@ html[data-color-scheme="dark"] {
 }
 
 // Header title
-#header h1 a {
-  height: 16px;
+#header .inner #home {
+
+  display: flex;
+  align-items: baseline;
+  border-radius: 20px;
+  margin-left: 3px;
 
   .app-title {
-    float: left;
+    color: var(--bwein-title-color);
   }
 
   .custom-title {
-    float: left;
     border-left: 1px solid var(--bwein-title-color);
     margin-left: 7px;
     padding-left: 7px;
@@ -47,33 +49,31 @@ html[data-color-scheme="dark"] {
 
     .app-title,
     .custom-title {
-      display: none;
+      display: none !important;
     }
   }
 }
 
-#main .tl_login_form .custom-header {
-  display: block;
-  padding: 13px;
-  text-align: center;
-  font-size: 1rem;
-  color: var(--bwein-title-color);
-  background: #f47c00;
+#main .tl_login_form {
+  padding-top: 15px;
+
+  .custom-header {
+    display: flex;
+    justify-content: center;
+    padding: 13px;
+    text-align: center;
+    font-size: 1rem;
+    color: var(--bwein-title-color);
+    background: #f47c00;
+    border-radius: 20px;
+    margin: 0 15px;
+  }
 }
 
 // Header color
-#header .inner,
+#header .inner #home,
 #main .tl_login_form .custom-header {
-  background: var(--bwein-header-color);
-}
-
-#tmenu sup {
-  color: var(--bwein-header-color);
-}
-
-#tl_navigation [class^="menu_level_"] > li.current > a,
-#tl_navigation .menu_level_1 li.current {
-  border-left-color: var(--bwein-header-color);
+  background-color: var(--bwein-header-color);
 }
 
 #tl_crawl .progress-bar.running,
@@ -81,37 +81,9 @@ html[data-color-scheme="dark"] {
   background-color: var(--bwein-header-color);
 }
 
-#tmenu a:hover, #tmenu a.hover, #tmenu li:hover .profile button, #tmenu .active .profile button, #tmenu .burger button:hover,
-#tmenu li:hover .h2, #tmenu .active .h2 {
-  background-color: var(--bwein-header-color-hover);
-}
-
-a:hover, a:active,
-.submit_container a:hover {
-  color: var(--bwein-header-color);
-}
-
-// Header invert
-#header h1 {
-  z-index: 5;
-
-  a {
-    background-image: url('../icons/logo.svg');
-  }
-}
-
-#header h1,
-#header h1 .env-title,
-#main .tl_login_form .custom-title,
-#tmenu > li > a,
-#tmenu > li > span,
-#tmenu sup {
-  filter: #{"invert(var(--bwein-header-invert))"};
-}
-
 // Env title
 .env-title {
-  float: right;
+  align-self: start;
   margin-left: 8px;
   margin-top: -8px;
   border-radius: 8px;
@@ -121,12 +93,13 @@ a:hover, a:active,
   font-size: .75rem;
   font-weight: 600;
 
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  @media (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi) {
     font-weight: 500;
   }
 }
 
-#header h1 a {
+#header .inner a {
   .env-title {
     @media (max-width: 767px) {
       margin-left: 32px;
@@ -145,8 +118,9 @@ a:hover, a:active,
   background: var(--bwein-login-main-color);
 }
 
-#main .login-providers, #main .tl_login_form {
-    background: none;
+#main .login-providers,
+#main .tl_login_form {
+  background: none;
 }
 
 #top #main {
@@ -154,16 +128,17 @@ a:hover, a:active,
 }
 
 html[data-color-scheme="dark"] {
+
   /* Use an overlay gradient (semi-transparent black) over the main color
      for consistent darkening and wide browser support. */
   #main {
-    background: linear-gradient(rgba(0,0,0,0.92), rgba(0,0,0,0.92)), var(--bwein-login-main-color);
+    background: linear-gradient(rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.92)), var(--bwein-login-main-color);
     background-blend-mode: normal;
   }
 
   #left,
   #top #main {
-    background: linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.88)), var(--bwein-top-main-color);
+    background: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.88)), var(--bwein-top-main-color);
     background-blend-mode: normal;
   }
 }
@@ -171,9 +146,9 @@ html[data-color-scheme="dark"] {
 /* When the backend search is present in the header, limit the custom title
    and show an ellipsis on overflow. Uses :has() so the rule only applies
    only if .backend-search exists inside #header. */
-#header:has(.backend-search) h1 a .custom-title {
+#header:has(.backend-search) .inner #home .custom-title {
   display: inline-block;
-  max-width: 80px;
+  max-width: 68px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

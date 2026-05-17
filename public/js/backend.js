@@ -7,7 +7,7 @@
   const ENV_DATA_KEY = 'bweinEnvTitle';
   const HEADER_APPLIED_KEY = HEADER_DATA_KEY + 'Applied';
   const ENV_APPLIED_KEY = ENV_DATA_KEY + 'Applied';
-  const HEADER_ANCHOR_SEL = '#header h1 a';
+  const HEADER_ANCHOR_SEL = '#header .inner #home';
   const LOGIN_FORM_INNER_SEL = '#main .tl_login_form .formbody';
 
   const debounce = (fn, wait = 120) => {
@@ -126,15 +126,11 @@
       }
 
       if (envTitle) {
-        const headline = loginFormInner.querySelector('h1');
-        if (!upsert(loginFormInner, 'env-title', envTitle, headline || null)) {
-          if (body.dataset[ENV_APPLIED_KEY] !== envTitle) {
-            upsert(customHeader, 'env-title', envTitle);
-            body.dataset[ENV_APPLIED_KEY] = envTitle;
-          }
+        if (body.dataset[ENV_APPLIED_KEY] !== envTitle) {
+          upsert(customHeader, 'env-title', envTitle);
+          body.dataset[ENV_APPLIED_KEY] = envTitle;
         }
       } else {
-        removeIfExists(loginFormInner, 'env-title');
         removeIfExists(customHeader, 'env-title');
         delete body.dataset[ENV_APPLIED_KEY];
       }
