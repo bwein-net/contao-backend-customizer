@@ -15,7 +15,7 @@ services:
                 - /app/vendor
                 - ./vendor:/host_vendor
     node:
-        type: node:24
+        type: node:26
         via: cli
 
 tooling:
@@ -38,6 +38,12 @@ tooling:
         service: node
         description: Run npm commands
 
-    gulp:
+    assets:
         service: node
-        description: Run gulp commands
+        description: Build the minified css and js files
+        cmd: npm run --silent build
+
+    assets-watch:
+        service: node
+        description: Rebuild the minified css and js files on changes
+        cmd: npm run --silent watch
