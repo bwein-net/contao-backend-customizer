@@ -40,12 +40,12 @@
   ],
   "require": {
     "php": "^8.3",
-    "contao/core-bundle": "^5.7",
-    "symfony/config": "^7.4",
-    "symfony/console": "^7.4",
-    "symfony/dependency-injection": "^7.4",
-    "symfony/event-dispatcher": "^7.4",
-    "symfony/http-kernel": "^7.4"
+    "contao/core-bundle": "^5.7 || ^6.0",
+    "symfony/config": "^7.4 || ^8.0",
+    "symfony/console": "^7.4 || ^8.0",
+    "symfony/dependency-injection": "^7.4 || ^8.0",
+    "symfony/event-dispatcher": "^7.4 || ^8.0",
+    "symfony/http-kernel": "^7.4 || ^8.0"
   },
   "require-dev": {
     "contao/manager-plugin": "^2.0",

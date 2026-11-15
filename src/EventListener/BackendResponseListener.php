@@ -55,7 +55,7 @@ class BackendResponseListener
         ];
 
         return implode(' ', array_map(
-            static fn ($v, $k) => \sprintf('data-bwein-%s="%s"', $k, $v),
+            static fn ($v, $k) => \sprintf('data-bwein-%s="%s"', $k, htmlspecialchars((string) $v, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5)),
             $attributes,
             array_keys($attributes),
         )).' ';
@@ -86,7 +86,7 @@ class BackendResponseListener
         }
 
         $style = implode('', array_map(
-            static fn ($v, $k) => \sprintf('--bwein-%s:%s;', $k, $v),
+            static fn ($v, $k) => \sprintf('--bwein-%s:%s;', $k, str_replace(['<', '>', '{', '}', ';'], '', (string) $v)),
             $styles,
             array_keys($styles),
         ));
